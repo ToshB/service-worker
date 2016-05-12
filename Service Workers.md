@@ -7,11 +7,20 @@ footer: Fagkveld Webstep Fokus 12. mai 2016
 
 ---
 
+<<<<<<< HEAD
 # [fit] *Registering*
 ## [fit] and *installing*
 
 ---
 
+=======
+# [fit] *Registrering*
+## [fit] og *installering*
+
+---
+
+# Installering
+>>>>>>> update
 ```javascript
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js').then(registration => {
@@ -26,9 +35,13 @@ if ('serviceWorker' in navigator) {
 
 ---
 
+<<<<<<< HEAD
 # [fit] Life*cycle*
 
 ---
+=======
+# Serviceworker *Lifecycle*
+>>>>>>> update
 
 1. Download
 2. *Install*
@@ -39,22 +52,37 @@ if ('serviceWorker' in navigator) {
 # Install-hooks
 
 ```javascript
+<<<<<<< HEAD
 self.addEventListener('install', function(event) {
   // Perform install steps
+=======
+self.addEventListener('install', event => {
+  // this happens while the old version is still in control
+>>>>>>> update
   event.waitUntil(
     fetchStuffAndInitDatabases()
   );
 });
 
+<<<<<<< HEAD
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     schemaMigrationAndCleanup()
   )
+=======
+self.addEventListener('activate', event => {
+  // the old version is gone now, do what you couldn't
+  // do while it was still around
+  event.waitUntil(
+    schemaMigrationAndCleanup()
+  );
+>>>>>>> update
 });
 ```
 
 ---
 
+<<<<<<< HEAD
 # Neste reload
 
 Service Workeren har kontroll over siden
@@ -68,6 +96,23 @@ Service Workeren har kontroll over siden
 1. Sjekk for oppdateringer i bakgrunnen
 2. Ved byte-endring, installer
 3. Den gamle versjonen kjører til *alle faner* er lukket
+=======
+# Oppdatering av serviceworkers
+
+1. Sjekker for oppdateringer i bakgrunnen
+2. Ved byte-endring, installer ny versjon
+3. Den gamle versjonen kjører til *alle faner* er lukket
+4. Ved reload har den nye serviceworkeren kontroll
+
+---
+
+# WorkerGlobalScope
+
+- `self`
+- `importScripts()`
+- `caches`
+- `onoffline`/`ononline`
+>>>>>>> update
 
 ---
 
@@ -79,7 +124,11 @@ Service Workeren har kontroll over siden
 
 Meldinger sendes til en __web app__ fra en __applikasjonsserver__
 
+<<<<<<< HEAD
 Meldingene mottas av __aktiv service worker__
+=======
+Meldingene mottas av __aktiv serviceworker__
+>>>>>>> update
 
 ---
 
@@ -91,12 +140,21 @@ navigator.serviceWorker.register('serviceworker.js')
         console.log(pushSubscription.endpoint);
         console.log(pushSubscription.getKey('p256dh'));
         console.log(pushSubscription.getKey('auth'));
+<<<<<<< HEAD
         // The push subscription details needed by the application
         // server are now available, and can be sent to it using,
         // for example, an XMLHttpRequest.
       });
   });
 ```
+=======
+      });
+  });
+```
+
+(fra nettsiden)
+
+>>>>>>> update
 ---
 
 ```javascript
@@ -106,6 +164,11 @@ self.onpush = function(event) {
 }
 ```
 
+<<<<<<< HEAD
+=======
+(i serviceworkeren)
+
+>>>>>>> update
 ---
 
 ```javascript
@@ -122,6 +185,11 @@ export function sendNotification(message) {
 
 ```
 
+<<<<<<< HEAD
+=======
+(fra serveren)
+
+>>>>>>> update
 ---
 
 # [fit] *Geo*
@@ -150,6 +218,11 @@ navigator.serviceWorker.register('service-worker.js')
   });
 ```
 
+<<<<<<< HEAD
+=======
+(fra nettsiden)
+
+>>>>>>> update
 ---
 
 - `ongeofenceenter`
@@ -170,6 +243,11 @@ self.ongeofenceenter = (event) => {
 };
 ```
 
+<<<<<<< HEAD
+=======
+(i serviceworkeren)
+
+>>>>>>> update
 ---
 
 # [fit] *Time*
@@ -178,18 +256,55 @@ self.ongeofenceenter = (event) => {
 
 ---
 
+<<<<<<< HEAD
 Vekker service worker til live på et gitt tidspunkt
 
 *Kommer senere*
+=======
+Vekker serviceworkeren til live ved gitt tidspunkt
+
+_Kommer antakeligvis senere_
+>>>>>>> update
 
 
 ---
 
+<<<<<<< HEAD
 ### postMessage
 
 ### sw-precache
 
 ### sw-toolbox
+=======
+# [fit] *Andre*
+# [fit] *Verktøy*
+
+![](./images/tool.jpg)
+
+---
+
+# sw-precache
+
+Nodemodul for generering av serviceworker som precacher gitte ressurser.
+
+```sh
+sw-precache \
+  --root=public \
+  --static-file-globs='public/**/*.{html,jpg,js,css}'
+```
+
+---
+
+# sw-toolbox
+
+Verktøy for hjelp med bl.a. routing, runtime caching, custom fallback, oppdatering av cachede ressurser
+
+```javascript
+toolbox.router.get(':foo/index.html', (request, values) => {
+  return new Response(`Handled a request for ${request.url}, where foo is ${values.foo}`);
+});
+```
+>>>>>>> update
 
 ---
 

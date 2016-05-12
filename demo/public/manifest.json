@@ -1,0 +1,8 @@
+{
+  "name": "Push Simple - From Service Worker Cookbook",
+  "short_name": "tosh-push-simple",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "gcm_sender_id": "14046472526",
+  "gcm_user_visible_only": true
+}
